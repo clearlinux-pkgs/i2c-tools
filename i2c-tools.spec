@@ -4,7 +4,7 @@
 #
 Name     : i2c-tools
 Version  : 3.0.0
-Release  : 2
+Release  : 3
 URL      : https://www.kernel.org/pub/software/utils/i2c-tools/i2c-tools-3.0.0.tar.gz
 Source0  : https://www.kernel.org/pub/software/utils/i2c-tools/i2c-tools-3.0.0.tar.gz
 Summary  : No detailed summary available
@@ -59,11 +59,11 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1516744343
+export SOURCE_DATE_EPOCH=1516746166
 make  %{?_smp_mflags}
 
 %install
-export SOURCE_DATE_EPOCH=1516744343
+export SOURCE_DATE_EPOCH=1516746166
 rm -rf %{buildroot}
 %make_install prefix=/usr
 
@@ -84,7 +84,7 @@ rm -rf %{buildroot}
 
 %files dev
 %defattr(-,root,root,-)
-/usr/include/linux/i2c-dev.h
+%exclude /usr/include/linux/i2c-dev.h
 
 %files doc
 %defattr(-,root,root,-)
