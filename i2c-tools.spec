@@ -15,7 +15,7 @@ Requires: i2c-tools-lib
 Requires: i2c-tools-doc
 BuildRequires : pbr
 BuildRequires : pip
-BuildRequires : python-dev
+
 BuildRequires : python3-dev
 BuildRequires : setuptools
 
