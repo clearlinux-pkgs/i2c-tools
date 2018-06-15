@@ -4,7 +4,7 @@
 #
 Name     : i2c-tools
 Version  : 4.0
-Release  : 8
+Release  : 9
 URL      : https://www.kernel.org/pub/software/utils/i2c-tools/i2c-tools-4.0.tar.gz
 Source0  : https://www.kernel.org/pub/software/utils/i2c-tools/i2c-tools-4.0.tar.gz
 Summary  : No detailed summary available
