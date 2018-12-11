@@ -4,16 +4,16 @@
 #
 Name     : i2c-tools
 Version  : 4.1
-Release  : 10
+Release  : 12
 URL      : https://www.kernel.org/pub/software/utils/i2c-tools/i2c-tools-4.1.tar.xz
 Source0  : https://www.kernel.org/pub/software/utils/i2c-tools/i2c-tools-4.1.tar.xz
 Summary  : No detailed summary available
 Group    : Development/Tools
 License  : GPL-2.0 LGPL-2.1
 Requires: i2c-tools-bin = %{version}-%{release}
+Requires: i2c-tools-lib = %{version}-%{release}
 Requires: i2c-tools-license = %{version}-%{release}
 Requires: i2c-tools-man = %{version}-%{release}
-Requires: i2c-tools-plugins = %{version}-%{release}
 BuildRequires : buildreq-distutils3
 
 %description
@@ -39,11 +39,21 @@ bin components for the i2c-tools package.
 %package dev
 Summary: dev components for the i2c-tools package.
 Group: Development
+Requires: i2c-tools-lib = %{version}-%{release}
 Requires: i2c-tools-bin = %{version}-%{release}
 Provides: i2c-tools-devel = %{version}-%{release}
 
 %description dev
 dev components for the i2c-tools package.
+
+
+%package lib
+Summary: lib components for the i2c-tools package.
+Group: Libraries
+Requires: i2c-tools-license = %{version}-%{release}
+
+%description lib
+lib components for the i2c-tools package.
 
 
 %package license
@@ -62,14 +72,6 @@ Group: Default
 man components for the i2c-tools package.
 
 
-%package plugins
-Summary: plugins components for the i2c-tools package.
-Group: Default
-
-%description plugins
-plugins components for the i2c-tools package.
-
-
 %prep
 %setup -q -n i2c-tools-4.1
 
@@ -78,17 +80,17 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1544544028
+export SOURCE_DATE_EPOCH=1544544805
 make  %{?_smp_mflags}
 
 
 %install
-export SOURCE_DATE_EPOCH=1544544028
+export SOURCE_DATE_EPOCH=1544544805
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/i2c-tools
 cp COPYING %{buildroot}/usr/share/package-licenses/i2c-tools/COPYING
 cp COPYING.LGPL %{buildroot}/usr/share/package-licenses/i2c-tools/COPYING.LGPL
-%make_install PREFIX=/usr
+%make_install PREFIX=/usr libdir=/usr/lib64
 
 %files
 %defattr(-,root,root,-)
@@ -109,7 +111,12 @@ cp COPYING.LGPL %{buildroot}/usr/share/package-licenses/i2c-tools/COPYING.LGPL
 %files dev
 %defattr(-,root,root,-)
 /usr/include/i2c/smbus.h
-/usr/lib/libi2c.so
+/usr/lib64/libi2c.so
+
+%files lib
+%defattr(-,root,root,-)
+/usr/lib64/libi2c.so.0
+/usr/lib64/libi2c.so.0.1.1
 
 %files license
 %defattr(0644,root,root,0755)
@@ -126,8 +133,3 @@ cp COPYING.LGPL %{buildroot}/usr/share/package-licenses/i2c-tools/COPYING.LGPL
 /usr/share/man/man8/i2cget.8
 /usr/share/man/man8/i2cset.8
 /usr/share/man/man8/i2ctransfer.8
-
-%files plugins
-%defattr(-,root,root,-)
-/usr/lib/libi2c.so.0
-/usr/lib/libi2c.so.0.1.1
