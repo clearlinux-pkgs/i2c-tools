@@ -1,5 +1,5 @@
 PKG_NAME := i2c-tools
-URL = https://www.kernel.org/pub/software/utils/i2c-tools/i2c-tools-4.2.tar.xz
+URL = https://git.kernel.org/pub/scm/utils/i2c-tools/i2c-tools.git/snapshot/i2c-tools-4.3.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
